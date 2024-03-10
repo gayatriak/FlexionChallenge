@@ -1,7 +1,5 @@
 name: unit conversion cicd 
-defaults:
-  run:
-    working-directory: "../terrform"
+
 on:
   workflow_dispatch: 
   push:
