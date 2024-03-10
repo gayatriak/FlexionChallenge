@@ -36,6 +36,7 @@ jobs:
       - name: Terraform Init
         id: init
         working-directory: "terrform"
+        run: terraform init
         env:
           TF_CLI_ARGS_init: "-backend-config=role_arn=arn:aws:iam::425669312978:role/github-actions -upgrade -reconfigure"
           TF_VAR_assume_role: "github-actions"
