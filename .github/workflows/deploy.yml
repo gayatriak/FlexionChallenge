@@ -1,4 +1,4 @@
-name: Unit-App-Pipeline
+name: Unit App Pipeline
 
 on: [push]
 
