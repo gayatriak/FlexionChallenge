@@ -18,7 +18,7 @@ jobs:
         with:
           audience: sts.amazonaws.com
           aws-region: us-east-2
-          role-to-assume:  arn:aws:iam::425669312978:oidc-provider/token.actions.githubusercontent.com
+          role-to-assume:  arn:aws:iam::425669312978:role/github-actions
           
       - name: Check out repository code
         uses: actions/checkout@v4
