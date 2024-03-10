@@ -16,7 +16,6 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          id-token: write
           audience: sts.amazonaws.com
           aws-region: us-east-2
           role-to-assume:  arn:aws:iam::425669312978:oidc-provider/token.actions.githubusercontent.com
