@@ -11,8 +11,11 @@ jobs:
     name: Setup Pipeline
     runs-on: ubuntu-latest
     steps:
-    - run: ls
     - uses: hashicorp/setup-terraform@v3
+
+    - name: List files in the repository
+      run: |
+        ls ${{ github.workspace }}
     
     - name: Terraform fmt
       id: fmt
