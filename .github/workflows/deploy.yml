@@ -4,10 +4,13 @@ defaults:
   run:
     working-directory: terrform
 
-on: [push]
+on: 
+  pull_request:
+  workflow_dispatch:
+  
 permissions:
-  id-token: write # This is required for requesting the JWT
-  contents: read  # This is required for actions/checkout
+  id-token: write # required for JWT for AWS to authenticate
+  contents: read  # required for actions to checkout repo
 
 jobs:
   setup:
@@ -51,13 +54,13 @@ jobs:
         
       - name: Terraform Init
         id: init
-        continue-on-error: true
+        continue-on-error: false
         run: terraform init
     
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color
-        continue-on-error: true
+        continue-on-error: false
         
   apply-Changes:
     runs-on: ubuntu-latest
