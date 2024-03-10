@@ -8,6 +8,7 @@ permissions:
 jobs:
   Plan-Deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 1
 
     steps:
       - uses: actions/checkout@v4
@@ -43,6 +44,7 @@ jobs:
 
       - name: Terraform Plan
         id: plan
+        working-directory: "terrform"
         run: terraform plan -no-color
         continue-on-error: true
 
