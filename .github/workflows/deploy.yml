@@ -19,6 +19,8 @@ jobs:
           audience: sts.amazonaws.com
           aws-region: us-east-2
           role-to-assume: arn:aws:iam::425669312978:role/github-actions
+        
+      - run: aws sts get-caller-identity
           
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -38,10 +40,6 @@ jobs:
         working-directory: "terrform"
         continue-on-error: true
         run: terraform init
-        env:
-          TF_CLI_ARGS_init: "-backend-config=role_arn=arn:aws:iam::425669312978:role/github-actions -upgrade -reconfigure"
-          TF_VAR_assume_role: "github-actions"
-          TF_LOG: INFO
 
       - name: Terraform Plan
         id: plan
