@@ -32,15 +32,6 @@ jobs:
         working-directory: "terrform"
         run: terraform fmt -check
         continue-on-error: true
-
-      - name: Terraform Init
-        uses: hashicorp/terraform-github-actions/init@v0.4.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TF_ACTION_WORKING_DIR: 'terrform'
-          AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
- 
       
       - name: Terraform Init
         id: init
@@ -50,6 +41,7 @@ jobs:
         env:
           TF_CLI_ARGS_init: "-backend-config=role_arn=arn:aws:iam::425669312978:role/github-actions -upgrade -reconfigure"
           TF_VAR_assume_role: "github-actions"
+          TF_LOG: INFO
 
       - name: Terraform Plan
         id: plan
@@ -58,4 +50,5 @@ jobs:
         env:
           TF_CLI_ARGS_init: "-backend-config=role_arn=arn:aws:iam::425669312978:role/github-actions -upgrade -reconfigure"
           TF_VAR_assume_role: "github-actions"
+          TF_LOG: INFO
     
