@@ -34,9 +34,19 @@ jobs:
         continue-on-error: true
       
       - name: Terraform Init
-        working-directory: "terrform"
         id: init
-        run: terraform init
-
+        working-directory: "terrform"
+        shell: bash
+        run: |
+          terraform init
+    
+      - name: Terraform Plan
+        id: plan
+        working-directory: "terrform"
+        shell: bash
+        run: |
+          echo 'plan<<EOF' >> $GITHUB_OUTPUT
+          terraform plan -no-color -out=tfplan >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
 
           
