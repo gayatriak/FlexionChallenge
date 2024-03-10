@@ -15,11 +15,11 @@ jobs:
 
     - name: List files in the repository
       run: |
-        ls "${{ github.workspace }}/FlexionChallange/terrform"
+        ls "${{ github.workspace }}/terrform"
     
     - name: Terraform fmt
       id: fmt
-      working-directory: "{{ github.workspace }}/FlexionChallange/terrform"
+      working-directory: "{{ github.workspace }}/terrform"
       run: terraform fmt -check
       continue-on-error: true
     
