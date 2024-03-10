@@ -11,6 +11,7 @@ jobs:
     name: Setup Pipeline
     runs-on: ubuntu-latest
     steps:
+    - run: cd terrform
     - uses: hashicorp/setup-terraform@v3
     
     - name: Terraform fmt
