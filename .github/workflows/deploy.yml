@@ -35,12 +35,6 @@ jobs:
         run: terraform fmt -check
         continue-on-error: true
         
-  Terraform-Plan:
-    runs-on: ubuntu-latest
-    timeout-minutes: 1
-    steps:
-      - uses: hashicorp/setup-terraform@v2
-      
       - name: Terraform Init
         id: init
         working-directory: "terrform"
@@ -52,5 +46,16 @@ jobs:
         working-directory: "terrform"
         run: terraform plan -no-color
         continue-on-error: true
+  Apply-Changes:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:  
+      - uses: hashicorp/setup-terraform@v2
+    
+      - name: Terraform apply
+        id: apply
+        run: terraform apply -auto-approve -input=false
+        working-directory: "terrform"
+
     
 
