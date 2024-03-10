@@ -3,7 +3,7 @@ name: Unit App Pipeline
 on: [push]
 
 jobs:
-  Plan & Deploy:
+  Plan-Deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
