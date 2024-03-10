@@ -10,14 +10,15 @@ jobs:
   tf_fmt:
     name: Setup Pipeline
     runs-on: ubuntu-latest
-    steps: 
+    steps:
+    - uses: hashicorp/setup-terraform@v3.0
     - run: pwd 
-  
+    
     - name: Checkout Repo
       uses: actions/checkout@v1
 
     - name: Terraform Init
-      uses: hashicorp/terraform-github-actions/init@v0.4.0
+    - run: terraform init
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TF_ACTION_WORKING_DIR: '../../terraform'
