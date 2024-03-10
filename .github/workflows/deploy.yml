@@ -1,9 +1,9 @@
-name: GitHub Actions Demo
+name: Unit-App-Pipeline
 
 on: [push]
 
 jobs:
-  Explore-GitHub-Actions:
+  Plan & Deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,12 +18,12 @@ jobs:
           
       - name: Terraform fmt
         id: fmt
-        working-directory: "/terrform"
+        working-directory: "terrform"
         run: terraform fmt -check
         continue-on-error: true
       
       - name: Terraform Init
-        working-directory: "/terrform"
+        working-directory: "terrform"
         id: init
         run: terraform init
           
