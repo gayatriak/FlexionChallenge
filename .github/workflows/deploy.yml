@@ -18,7 +18,7 @@ jobs:
         with:
           audience: sts.amazonaws.com
           aws-region: us-east-2
-          role-to-assume:  arn:aws:iam::425669312978:role/github-actions
+          role-to-assume: arn:aws:iam::425669312978:role/github-actions
           
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -36,17 +36,7 @@ jobs:
       - name: Terraform Init
         id: init
         working-directory: "terrform"
-        shell: bash
-        run: |
-          terraform init
+        env:
+          TF_CLI_ARGS_init: "-backend-config=role_arn=arn:aws:iam::425669312978:role/github-actions -upgrade -reconfigure"
+          TF_VAR_assume_role: "github-actions"
     
-      - name: Terraform Plan
-        id: plan
-        working-directory: "terrform"
-        shell: bash
-        run: |
-          echo 'plan<<EOF' >> $GITHUB_OUTPUT
-          terraform plan -no-color -out=tfplan >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT
-
-          
