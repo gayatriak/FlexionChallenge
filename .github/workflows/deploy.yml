@@ -1,7 +1,7 @@
 name: unit conversion cicd 
 defaults:
   run:
-    working-directory: terraform
+    working-directory: terrform
 on:
   workflow_dispatch: 
   push:
