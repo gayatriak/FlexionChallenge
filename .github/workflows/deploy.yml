@@ -16,15 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v2
-      
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          audience: sts.amazonaws.com
-          aws-region: us-east-2
-          role-to-assume: arn:aws:iam::425669312978:role/github-actions
-        
-      - run: aws sts get-caller-identity
           
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -42,9 +33,21 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 1
     needs: [setup]
+
     
     steps:
       - uses: hashicorp/setup-terraform@v2
+      - uses: actions/checkout@v4
+      
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          audience: sts.amazonaws.com
+          aws-region: us-east-2
+          role-to-assume: arn:aws:iam::425669312978:role/github-actions
         
       - name: Terraform Init
         id: init
@@ -61,6 +64,13 @@ jobs:
     if: github.event.pull_request.merged == true
     steps:  
       - uses: hashicorp/setup-terraform@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          audience: sts.amazonaws.com
+          aws-region: us-east-2
+          role-to-assume: arn:aws:iam::425669312978:role/github-actions
     
       - name: Terraform apply
         id: apply
