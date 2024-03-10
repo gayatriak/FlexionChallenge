@@ -78,6 +78,11 @@ jobs:
           aws-region: us-east-2
           role-to-assume: arn:aws:iam::425669312978:role/github-actions
     
+      - name: Terraform Init
+        id: init
+        continue-on-error: false
+        run: terraform init
+    
       - name: Terraform apply
         id: apply
         run: terraform apply -auto-approve -input=false
