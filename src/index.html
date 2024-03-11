@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Conversion</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>src="conversions.js"</script>
+</head>
+<body>
+
+ 
+ <form oninput="res.value=parseInt(a.value)+parseInt(b.value);">
+ 	<label>Enter First Value.</label><br>
+ 	<input type="number" name="a" value=""/><br>
+ 	+<br/>
+ 	<label>Enter First Value.</label><br> 
+ 	<input type="number" name="b" value=""><br>
+ 	=<br>
+ 	Output is:<output name="res"></output>
+ </form>
+
+    <div class="container">
+        <h1>Unit Conversion</h1>
+        <form>
+            <div class="input-group">
+                <label for="numValue">Input Numerical Value:</label>
+                <input type="text" id="studentResponse" class="input-field">
+            </div>
+            <div class="input-group">
+                <label for="inputUnit">Input Unit of Measurement:</label>
+                <input type="text" id="inputUnit" class="input-field">
+            </div>
+            <div class="input-group">
+                <label for="targetUnit">Target Unit of Measurement:</label>
+                <input type="text" id="targetUnit" class="input-field">
+            </div>
+            <div class="input-group">
+                <label for="studentResponse">Student Response:</label>
+                <input type="text" id="studentResponse" class="input-field">
+            </div>
+            
+            <button type="button" onclick="checkConversion()">Check Conversion</button>
+          
+
+            <div class="input-group">
+                <label for="output">Output:</label>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -19,6 +19,7 @@ const conversionFactors = {
         'Kelvin': value => value / 0.00378541
     }
 };
+console.log("testing git connectivity");
 
 
 //// Function to convert units
