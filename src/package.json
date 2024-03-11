@@ -1,0 +1,31 @@
+{
+    "scripts": {
+      "convert": "node conversion.js",
+      "postbuild": "npm run",
+      "test": "jest"
+    },
+    "name": "conversions",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/gayatriak/FlexionChallenge.git"
+    },
+    "keywords": [
+      "attempt"
+    ],
+    "author": "Gayatri Akula <gayatriakula15@gmail.com> (file:///Users/gayatriakula/Documents/localRepo/FlexionChallenge/conversionFactors/conversionFactors.html)",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/gayatriak/FlexionChallenge/issues"
+    },
+    "homepage": "https://github.com/gayatriak/FlexionChallenge#readme",
+    "description": "",
+    "devDependencies": {
+      "jest": "^29.7.0"
+    },
+    "dependencies": {
+      "express": "^4.18.3"
+    }
+  }
+  
