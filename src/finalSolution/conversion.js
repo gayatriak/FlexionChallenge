@@ -71,26 +71,26 @@ const temperatureConversions = {
     const inputUnit = document.getElementById('inputUnit').value.trim().toLowerCase();
     const targetUnit = document.getElementById('targetUnit').value.trim().toLowerCase();
     const studentNumber = document.getElementById('studentNumber').value;
-    const input = document.getElementById('result').innerText;
+    const output = document.getElementById('result').innerText;
     // inputs have to exist
     if (!studentNumber || !inputNumber || !targetUnit || !studentNumber)  {
-        input= 'Invalid';
+      output= 'Invalid';
         return;
       }
     // input number & student number must be an int
     if (isNaN(inputNumber) || isNaN(studentNumber)) {
-        input= 'Invalid';
+      output= 'Invalid';
       return;
     }
 
      // got to be a temp to temp or vol to vol
     if (!(inputUnit in temperatureConversions) && !(inputUnit in volumeConversions)) {
-      input= 'Invalid';
+      output= 'Invalid';
       return;
     }
      // got to be a temp to temp or vol to vol
     if (!(targetUnit in temperatureConversions) && !(targetUnit in volumeConversions)) {
-      input= 'Invalid target unit';
+      output= 'Invalid target unit';
       return;
     }
     
@@ -100,7 +100,7 @@ const temperatureConversions = {
       result = temperatureConversions[inputUnit][targetUnit](inputNumber);
       //kelvin cannot be negative but the rest can 
       if (inputUnit === 'kelvin' && result < 0) {
-        input= 'Incorrect';
+        output= 'Incorrect';
         return;
       }
     }
@@ -109,13 +109,13 @@ const temperatureConversions = {
       result = volumeConversions[inputUnit][targetUnit](inputNumber);
      
       if (result < 0) {
-        input= 'Incorrect';
+        output= 'Incorrect';
         return;
       }
     } else {
-      input= 'Incorrect';
+      output= 'Incorrect';
       return;
     }
-     input= 'Correct';
+    output= 'Correct';
   }
  
