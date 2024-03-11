@@ -67,6 +67,55 @@ const temperatureConversions = {
     }
   };
    function convertUnits() {
+    const inputNumber = parseFloat(document.getElementById('inputNumber').value);
+    const inputUnit = document.getElementById('inputUnit').value.trim().toLowerCase();
+    const targetUnit = document.getElementById('targetUnit').value.trim().toLowerCase();
+    const studentNumber = document.getElementById('studentNumber').value;
+    const input = document.getElementById('result').innerText;
+    // inputs have to exist
+    if (!studentNumber || !inputNumber || !targetUnit || !studentNumber)  {
+        input= 'Invalid';
+        return;
+      }
+    // input number & student number must be an int
+    if (isNaN(inputNumber) || isNaN(studentNumber)) {
+        input= 'Invalid';
+      return;
+    }
+
+     // got to be a temp to temp or vol to vol
+    if (!(inputUnit in temperatureConversions) && !(inputUnit in volumeConversions)) {
+      input= 'Invalid';
+      return;
+    }
+     // got to be a temp to temp or vol to vol
+    if (!(targetUnit in temperatureConversions) && !(targetUnit in volumeConversions)) {
+      input= 'Invalid target unit';
+      return;
+    }
     
+    let result;
+
+    if (inputUnit in temperatureConversions && targetUnit in temperatureConversions[inputUnit]) {
+      result = temperatureConversions[inputUnit][targetUnit](inputNumber);
+      //kelvin cannot be negative but the rest can 
+      if (inputUnit === 'kelvin' && result < 0) {
+        input= 'Incorrect';
+        return;
+      }
+    }
+
+    else if (inputUnit in volumeConversions && targetUnit in volumeConversions[inputUnit]) {
+      result = volumeConversions[inputUnit][targetUnit](inputNumber);
+     
+      if (result < 0) {
+        input= 'Incorrect';
+        return;
+      }
+    } else {
+      input= 'Incorrect';
+      return;
+    }
+     input= 'Correct';
   }
  
