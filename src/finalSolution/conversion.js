@@ -107,15 +107,12 @@ const temperatureConversions = {
 
     else if (inputUnit in volumeConversions && targetUnit in volumeConversions[inputUnit]) {
       result = volumeConversions[inputUnit][targetUnit](inputNumber);
-     
-      if (result < 0) {
-        document.getElementById('result').innerText= 'Incorrect';
-        return;
-      }
-    } else {
-      document.getElementById('result').innerText= 'Incorrect';
-      return;
+     console.log(result)
+      
+     const isValidResult = output === studentNumber.toString();
+     const resultText = isValidResult ? 'Correct' : 'Incorrect';
+     console.log(resultText);
+     document.getElementById('result').innerText = `${resultText}`;
     }
-    document.getElementById('result').innerText= 'Correct';
   }
  
