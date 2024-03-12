@@ -71,7 +71,7 @@ const temperatureConversions = {
     const inputUnit = document.getElementById('inputUnit').value.trim().toLowerCase();
     const targetUnit = document.getElementById('targetUnit').value.trim().toLowerCase();
     const studentNumber = document.getElementById('studentNumber').value;
-    const output = document.getElementById('result').innerText;
+   
     // inputs have to exist
     if (!studentNumber || !inputNumber || !targetUnit || !studentNumber)  {
       document.getElementById('result').innerText= 'Invalid';
@@ -97,22 +97,24 @@ const temperatureConversions = {
     let result;
 
     if (inputUnit in temperatureConversions && targetUnit in temperatureConversions[inputUnit]) {
+      const roundedStudentNumber = Math.round(studentNumber * 10) / 10;
       result = temperatureConversions[inputUnit][targetUnit](inputNumber);
       //kelvin cannot be negative but the rest can 
       if (inputUnit === 'kelvin' && result < 0) {
         document.getElementById('result').innerText= 'Incorrect';
         return;
       }
+      const roundedResult = Math.round(result * 10) / 10;
+      const resultText = roundedResult == roundedStudentNumber ? "Correct" : "Incorrect";
+      document.getElementById('result').innerText = `${resultText}`;
     }
 
     else if (inputUnit in volumeConversions && targetUnit in volumeConversions[inputUnit]) {
+      const roundedStudentNumber = Math.round(studentNumber * 10) / 10;
       result = volumeConversions[inputUnit][targetUnit](inputNumber);
-     console.log(result)
-      
-     const isValidResult = output === studentNumber.toString();
-     const resultText = isValidResult ? 'Correct' : 'Incorrect';
-     console.log(resultText);
-     document.getElementById('result').innerText = `${resultText}`;
-    }
+      const roundedResult = Math.round(result * 10) / 10; 
+      const resultText = roundedResult == roundedStudentNumber ? "Correct" : "Incorrect";
+      document.getElementById('result').innerText = `${resultText}`;
+    } 
   }
  
